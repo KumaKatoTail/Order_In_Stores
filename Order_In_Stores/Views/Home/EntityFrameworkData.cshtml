@@ -1,0 +1,27 @@
+﻿@model List<PaymentSummary>
+
+@{
+    ViewData["Title"] = "Dane pobrane przy pomocy Entity Framework";
+}
+
+<h2>Podsumowanie zamówień według typu płatności</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Typ płatności</th>
+            <th scope="col">Liczba zamówień</th>
+            <th scope="col">Łączna wartość brutto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var summary in Model)
+        {
+            <tr>
+                <td>@summary.PaymentType</td>
+                <td>@summary.TotalOrders</td>
+                <td>@summary.TotalGrossValue</td>
+            </tr>
+        }
+    </tbody>
+</table>

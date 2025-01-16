@@ -1,0 +1,64 @@
+﻿@using Order_In_Stores.Models
+@model List<OrderApiDto>
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dane pobrane z WebAPI</title>
+    <!-- Link do Bootstrapa -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+
+        table {
+            margin-top: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Dane pobrane z Web API</h1>
+
+        <!-- Sprawdzenie, czy lista danych jest pusta -->
+        @if (Model != null && Model.Count > 0)
+        {
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nazwa sklepu</th>
+                        <th>Miasto</th>
+                        <th>Wartość netto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.StoreName</td>
+                            <td>@order.City</td>
+                            <td>@order.NetValue.ToString("C2")</td> <!-- Formatowanie wartości jako waluty -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                Brak danych do wyświetlenia.
+            </div>
+        }
+    </div>
+
+    <!-- Dodanie skryptu JavaScript Bootstrapa -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
